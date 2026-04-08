@@ -1,0 +1,41 @@
+version: '1.0'
+kind: Debate
+metadata:
+  name: Riddle Creation Debate
+  description: Agents create random riddles, judge validates them
+spec:
+  method: majority_vote
+  input: Create a completely original riddle. The riddle should be clever, have a clear answer, and follow the classic riddle format (a question or statement that describes something without naming it directly).
+  debug: false
+  judges:
+    - default/agents/judge.yaml
+  agents:
+    - default/agents/einstein.yaml
+    - default/agents/confucius.yaml
+  output:
+    format: json
+    structure:
+      winner: string  # filename of the agent with the best riddle
+      winner_riddle: string  # the riddle created by the winning agent
+      reasoning: string  # explanation of why this riddle was chosen as best
+      validation_results:  # array of validation results for each riddle
+        - agent: string  # filename of the agent
+          riddle: string  # the riddle they created
+          is_valid_riddle: boolean  # whether it's a proper riddle
+          validation_reasoning: string  # why it is/isn't valid
+          quality_score: number  # 1-10 rating of riddle quality
+      votes:  # individual judge evaluations
+        - agent: string  # filename of the agent being evaluated
+          vote: string  # detailed reasoning for the vote
+    instructions: |
+      Evaluate the riddles created by the agents. For each riddle, determine:
+      1. Is it a valid riddle? (has a clear answer, clever wording, not too obvious)
+      2. Quality score (1-10) based on creativity, cleverness, and proper riddle structure
+      3. Choose the best riddle as winner
+      
+      Respond with structured JSON containing:
+      - winner: filename of agent with best riddle
+      - winner_riddle: the riddle created by the winning agent
+      - reasoning: why this riddle won
+      - validation_results: array with validation for each agent's riddle
+      - votes: detailed evaluation of each riddle

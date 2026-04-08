@@ -1,0 +1,29 @@
+version: '1.0'
+kind: Debate
+metadata:
+  name: Meaning of Life Debate
+  description: A philosophical debate between Einstein and Confucius on the meaning of life
+spec:
+  method: majority_vote
+  input: What is the meaning of life?
+  debug: true
+  judges:
+    - default/agents/judge.yaml
+  agents:
+    - default/agents/einstein.yaml
+    - default/agents/confucius.yaml
+  output:
+    format: json
+    structure:
+      winner: string  # filename of the winning agent
+      reasoning: string  # overall explanation for the decision
+      votes:  # array of individual agent evaluations
+        - agent: string  # filename of the agent being evaluated
+          vote: string  # detailed reasoning why this agent should win
+    instructions: |
+      Evaluate the arguments and provide your judgment in structured JSON format.
+      - winner: filename of the winning agent (e.g., "default/agents/einstein.yaml")
+      - reasoning: overall explanation for why this agent won the debate
+      - votes: array where each item contains:
+        - agent: filename of the agent being evaluated
+        - vote: detailed reasoning explaining the strengths and weaknesses of this agent's argument, including analysis of logic, evidence, clarity, and persuasiveness
