@@ -1,6 +1,6 @@
 {
   "name": "llm-mar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "LLM-MAR is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.",
   "main": "index.js",
   "bin": {
@@ -9,9 +9,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["llm", "ai", "agents", "cli", "debate", "workflows", "openai", "langchain"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renatojuniorrs/llm-mar.git"
+  },
   "dependencies": {
     "@langchain/openai": "^1.4.3",
     "commander": "^14.0.3",
