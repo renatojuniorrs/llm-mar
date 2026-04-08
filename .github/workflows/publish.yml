@@ -20,8 +20,9 @@ jobs:
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
+      - run: npm whoami
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm publish
+      - run: npm publish --access public
         env:
           NPM_CONFIG_PROVENANCE: true
