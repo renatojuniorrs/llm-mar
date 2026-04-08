@@ -1,6 +1,6 @@
 {
   "name": "llm-mar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "LLM-MAR is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.",
   "main": "index.js",
   "bin": {

@@ -1,6 +1,6 @@
 # LLM-MAR
 
-[![npm version](https://badge.fury.io/js/llm-mar.svg)](https://badge.fury.io/js/llm-mar) [![Socket Badge](https://badge.socket.dev/npm/package/llm-mar/1.0.2)](https://badge.socket.dev/npm/package/llm-mar/1.0.2)
+[![npm version](https://badge.fury.io/js/llm-mar.svg)](https://badge.fury.io/js/llm-mar) [![Socket Badge](https://badge.socket.dev/npm/package/llm-mar)](https://badge.socket.dev/npm/package/llm-mar)
 
 LLM-MAR (Multi Agent Reasoning) is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.
 
