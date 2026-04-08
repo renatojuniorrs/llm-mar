@@ -4,6 +4,14 @@ LLM-MAR is a compact CLI that creates LLM agents, lets them debate, answers ques
 
 ## Installation
 
+### Option 1: Install from npm (Recommended)
+
+```bash
+npm install -g llm-mar
+```
+
+### Option 2: Install from source
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/renatojuniorrs/llm-mar.git
@@ -22,12 +30,14 @@ LLM-MAR is a compact CLI that creates LLM agents, lets them debate, answers ques
 
 ## Usage
 
+After installation, use the `llm-mar` command (or `npx llm-mar` if installed locally).
+
 ### Creating Agents
 
 Create a new agent YAML file:
 
 ```bash
-npx llm-mar create agent myagent --model gpt-4 --goal "To answer questions" --role "Assistant" --system-prompt "You are a helpful assistant." --instructions "Think step by step,Answer clearly" --output text
+llm-mar create agent myagent --model gpt-4 --goal "To answer questions" --role "Assistant" --system-prompt "You are a helpful assistant." --instructions "Think step by step,Answer clearly" --output text
 ```
 
 This creates `default/myagent.yaml`.
@@ -37,7 +47,7 @@ This creates `default/myagent.yaml`.
 Create a team of agents:
 
 ```bash
-npx llm-mar create team myteam --agents "default/agent1.yaml,default/agent2.yaml" --output text
+llm-mar create team myteam --agents "default/agent1.yaml,default/agent2.yaml" --output text
 ```
 
 ### Running Agents
@@ -45,7 +55,7 @@ npx llm-mar create team myteam --agents "default/agent1.yaml,default/agent2.yaml
 Run an agent with input:
 
 ```bash
-npx llm-mar run default/myagent.yaml --input "What is the capital of France?"
+llm-mar run default/myagent.yaml --input "What is the capital of France?"
 ```
 
 ### Running Teams
@@ -53,7 +63,7 @@ npx llm-mar run default/myagent.yaml --input "What is the capital of France?"
 Run a team with a specific agent:
 
 ```bash
-npx llm-mar run default/myteam.yaml --agent agent1 --input "Discuss this topic"
+llm-mar run default/myteam.yaml --agent agent1 --input "Discuss this topic"
 ```
 
 ### Running Debates
@@ -61,7 +71,7 @@ npx llm-mar run default/myteam.yaml --agent agent1 --input "Discuss this topic"
 Run a debate (assuming you have a debate YAML):
 
 ```bash
-npx llm-mar run default/debate1.yaml
+llm-mar run default/debate1.yaml
 ```
 
 ## YAML Structure
