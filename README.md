@@ -1,6 +1,6 @@
 # LLM-MAR
 
-LLM-MAR is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.
+LLM-MAR (Multi Agent Reasoning) is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.
 
 ## Installation
 
