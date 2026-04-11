@@ -4,6 +4,13 @@
 
 LLM-MAR (Multi Agent Reasoning) is a compact CLI that creates LLM agents, lets them debate, answers questions, and builds workflows.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+- [YAML Structure](#yaml-structure)
+
 ## Installation
 
 ### Option 1: Install from npm (Recommended)
@@ -29,6 +36,74 @@ npm install -g llm-mar
    ```bash
    export OPENAI_API_KEY=your_api_key_here
    ```
+
+## Quick Start
+
+Get started with LLM-MAR in minutes! Create intelligent agents, form teams, and orchestrate debates—all through simple YAML configurations.
+
+### 1. Create Your First Agent
+
+Let's create an AI assistant specialized in creative writing:
+
+```bash
+llm-mar create agent writer --model gpt-4 --goal "To write engaging stories" --role "Creative Writer" --system-prompt "You are a talented fiction writer with a vivid imagination." --instructions "Use descriptive language,Build suspense,End with a twist" --output text
+```
+
+This generates a YAML configuration file that defines your agent's personality and capabilities.
+
+### 2. See the YAML Structure
+
+The command above creates `default/writer.yaml` with this structure:
+
+```yaml
+version: '1.0'
+kind: Agent
+metadata:
+  name: writer
+  description: An agent named writer
+spec:
+  id: writer
+  model: gpt-4
+  goal: To write engaging stories
+  role: Creative Writer
+  system_prompt: You are a talented fiction writer with a vivid imagination.
+  instructions:
+    - Use descriptive language
+    - Build suspense
+    - End with a twist
+  output: text
+```
+
+**Key Components:**
+- **metadata**: Basic info and description
+- **spec**: The agent's configuration including model, role, and behavior
+- **instructions**: List of guidelines for the AI's responses
+
+### 3. Run Your Agent
+
+Now let's use the agent to generate a story:
+
+```bash
+llm-mar run default/writer.yaml --input "Write a short story about a mysterious old clock in an antique shop."
+```
+
+The agent will respond with a creative story based on its configuration!
+
+### 4. Build a Team
+
+Combine multiple agents for collaborative tasks:
+
+```bash
+llm-mar create team story_team --agents "default/writer.yaml,default/editor.yaml" --output text
+```
+
+### 5. Set Up a Debate
+
+Create engaging debates between agents:
+
+```bash
+llm-mar create debate tech_debate --agents "default/optimist.yaml,default/pessimist.yaml" --judges "default/judge.yaml" --input "Will AI replace human jobs?" --output text
+```
 
 ## Usage
 
@@ -78,4 +153,60 @@ llm-mar run default/debate1.yaml
 
 ## YAML Structure
 
-See [docs/yaml-structure-guide.md](docs/yaml-structure-guide.md) for details on YAML file formats.
+LLM-MAR uses YAML files to define agents, teams, and debates. Here's a quick overview of the structure:
+
+### Agent YAML
+
+```yaml
+version: '1.0'
+kind: Agent
+metadata:
+  name: Scientist
+  description: A scientific analysis agent
+spec:
+  id: scientist
+  model: gpt-4
+  goal: To provide scientific explanations
+  role: Research Scientist
+  system_prompt: You are an expert scientist...
+  instructions:
+    - Use evidence-based reasoning
+    - Explain complex concepts simply
+  output: text
+```
+
+### Team YAML
+
+```yaml
+version: '1.0'
+kind: Team
+metadata:
+  name: Research Team
+  description: Collaborative research team
+spec:
+  agents:
+    - default/scientist.yaml
+    - default/analyst.yaml
+  output: text
+```
+
+### Debate YAML
+
+```yaml
+version: '1.0'
+kind: Debate
+metadata:
+  name: Ethics Debate
+  description: Debate on AI ethics
+spec:
+  method: majority_vote
+  input: Should AI have rights?
+  judges:
+    - default/judge.yaml
+  agents:
+    - default/pro.yaml
+    - default/con.yaml
+  output: text
+```
+
+For detailed configuration options and advanced features, see [docs/yaml-structure-guide.md](docs/yaml-structure-guide.md).

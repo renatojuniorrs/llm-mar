@@ -13,8 +13,10 @@ function setupCreate(program) {
     .option('--system-prompt <prompt>', 'system prompt', 'You are a helpful assistant.')
     .option('--instructions <instructions>', 'instructions as comma-separated list', 'Think step by step,Answer clearly and concisely')
     .option('--output <format>', 'output format', 'text')
+    .option('--output-file <path>', 'output file path')
     .action((name, options) => {
       const instructions = options.instructions.split(',').map(s => s.trim());
+      const outputFile = options.outputFile || `default/${name}.yaml`;
       const config = {
         version: '1.0',
         kind: 'Agent',
@@ -33,8 +35,8 @@ function setupCreate(program) {
         }
       };
       const yamlStr = yaml.dump(config);
-      fs.writeFileSync(`default/${name}.yaml`, yamlStr);
-      console.log(`Agent YAML created: default/${name}.yaml`);
+      fs.writeFileSync(outputFile, yamlStr);
+      console.log(`Agent YAML created: ${outputFile}`);
     });
 
   createCmd
@@ -42,12 +44,14 @@ function setupCreate(program) {
     .description('create a new team YAML')
     .option('--agents <agents>', 'comma-separated list of agent YAML file paths')
     .option('--output <format>', 'output format', 'text')
+    .option('--output-file <path>', 'output file path')
     .action((name, options) => {
       if (!options.agents) {
         console.error('Error: --agents is required');
         process.exit(1);
       }
       const agentFiles = options.agents.split(',').map(s => s.trim());
+      const outputFile = options.outputFile || `default/${name}.yaml`;
       const config = {
         version: '1.0',
         kind: 'Team',
@@ -61,8 +65,8 @@ function setupCreate(program) {
         }
       };
       const yamlStr = yaml.dump(config);
-      fs.writeFileSync(`default/${name}.yaml`, yamlStr);
-      console.log(`Team YAML created: default/${name}.yaml`);
+      fs.writeFileSync(outputFile, yamlStr);
+      console.log(`Team YAML created: ${outputFile}`);
     });
 
   createCmd
@@ -73,6 +77,7 @@ function setupCreate(program) {
     .option('--judges <judges>', 'comma-separated list of judge agent YAML file paths')
     .option('--input <input>', 'debate input topic', 'A topic to debate')
     .option('--output <format>', 'output format', 'text')
+    .option('--output-file <path>', 'output file path')
     .action((name, options) => {
       if (!options.agents || !options.judges) {
         console.error('Error: --agents and --judges are required');
@@ -80,6 +85,7 @@ function setupCreate(program) {
       }
       const agents = options.agents.split(',').map(s => s.trim());
       const judges = options.judges.split(',').map(s => s.trim());
+      const outputFile = options.outputFile || `default/${name}.yaml`;
       const config = {
         version: '1.0',
         kind: 'Debate',
@@ -96,8 +102,8 @@ function setupCreate(program) {
         }
       };
       const yamlStr = yaml.dump(config);
-      fs.writeFileSync(`default/${name}.yaml`, yamlStr);
-      console.log(`Debate YAML created: default/${name}.yaml`);
+      fs.writeFileSync(outputFile, yamlStr);
+      console.log(`Debate YAML created: ${outputFile}`);
     });
 }
 
