@@ -23,7 +23,7 @@ npm install -g llm-mar
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/renatojuniorrs/llm-mar.git
+   git clone https://github.com/llm-mar/llm-mar.git
    cd llm-mar
    ```
 
